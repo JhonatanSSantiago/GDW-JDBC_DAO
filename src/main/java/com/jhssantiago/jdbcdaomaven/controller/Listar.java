@@ -1,7 +1,7 @@
 package com.jhssantiago.jdbcdaomaven.controller;
 
-import com.jhssantiago.jdbcdaomaven.dao.ErroBancoException;
-import com.jhssantiago.jdbcdaomaven.dao.PessoaDao;
+import com.jhssantiago.jdbcdaomaven.dao.ErroDAOException;
+import com.jhssantiago.jdbcdaomaven.dao.PessoaDaoBanco;
 import com.jhssantiago.jdbcdaomaven.dao.PessoaDaoInterface;
 import com.jhssantiago.jdbcdaomaven.model.Pessoa;
 import java.io.IOException;
@@ -31,14 +31,14 @@ public class Listar extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ErroBancoException {
+            throws ServletException, IOException, ErroDAOException {
         response.setContentType("text/xml;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             PessoaDaoInterface dao = null;
             List<Pessoa> pessoas = null;
 
             try {
-                dao = new PessoaDao();
+                dao = new PessoaDaoBanco();
                 pessoas = dao.pegaPessoas();
                 out.print("<pessoas>");
                 for (int i = 0; i < pessoas.size(); i++) {
@@ -46,12 +46,12 @@ public class Listar extends HttpServlet {
                     out.println(p1);
                 }
                 out.print("</pessoas>");
-            } catch (SQLException ex) {
+            } catch (ErroDAOException ex) {
                 out.print("<p>Erro ao tentar ler os dados</p>");
             } finally {
                 try {
                     dao.sair();
-                } catch (ErroBancoException ex) {
+                } catch (ErroDAOException ex) {
                     out.print("<erro>Erro ao tentar sair!</erro>");
                 }
             }
@@ -72,7 +72,7 @@ public class Listar extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ErroBancoException ex) {
+        } catch (ErroDAOException ex) {
             Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -90,7 +90,7 @@ public class Listar extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ErroBancoException ex) {
+        } catch (ErroDAOException ex) {
             Logger.getLogger(Listar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

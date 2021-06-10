@@ -12,6 +12,22 @@
         <servlet-name>Teste</servlet-name>
         <servlet-class>com.jhssantiago.jdbcdaomaven.controller.Teste</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControllerXml</servlet-name>
+        <servlet-class>com.jhssantiago.jdbcdaomaven.controller.ControllerXml</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarXml</servlet-name>
+        <servlet-class>com.jhssantiago.jdbcdaomaven.controller.ListarXml</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Deletar</servlet-name>
+        <servlet-class>com.jhssantiago.jdbcdaomaven.controller.DeletarXml</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarXml</servlet-name>
+        <servlet-class>com.jhssantiago.jdbcdaomaven.controller.EditarXml</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/controller</url-pattern>
@@ -23,6 +39,22 @@
     <servlet-mapping>
         <servlet-name>Teste</servlet-name>
         <url-pattern>/teste</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControllerXml</servlet-name>
+        <url-pattern>/controllerxml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarXml</servlet-name>
+        <url-pattern>/listarxml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Deletar</servlet-name>
+        <url-pattern>/deletarxml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarXml</servlet-name>
+        <url-pattern>/editarxml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><pessoas>
+    <pessoa>
+        <codigo>1</codigo>
+        <idade>20</idade>
+        <nome>Pedro</nome>
+    </pessoa>
+    <pessoa>
+        <codigo>2</codigo>
+        <idade>20</idade>
+        <nome>Maria</nome>
+    </pessoa>
+    <pessoa>
+        <codigo>3</codigo>
+        <idade>30</idade>
+        <nome>Tadeu</nome>
+    </pessoa>
+    
+</pessoas>

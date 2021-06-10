@@ -5,8 +5,8 @@
  */
 package com.jhssantiago.jdbcdaomaven.controller;
 
-import com.jhssantiago.jdbcdaomaven.dao.ErroBancoException;
-import com.jhssantiago.jdbcdaomaven.dao.PessoaDao;
+import com.jhssantiago.jdbcdaomaven.dao.ErroDAOException;
+import com.jhssantiago.jdbcdaomaven.dao.PessoaDaoBanco;
 import com.jhssantiago.jdbcdaomaven.dao.PessoaDaoInterface;
 import com.jhssantiago.jdbcdaomaven.model.Pessoa;
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class Controller extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ErroBancoException {
+            throws ServletException, IOException, ErroDAOException {
         response.setContentType("text/xml;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
 
@@ -44,23 +44,21 @@ public class Controller extends HttpServlet {
             String idadeText = request.getParameter("idade");
 
             Pessoa p = new Pessoa();
-            PessoaDao dao = null;
+            PessoaDaoBanco dao = null;
             int idade = Integer.parseInt(idadeText);
             p.setIdade(idade);
-            p.setNome(nome);
-            
-            
+            p.setNome(nome);           
             
             try {
-                dao = new PessoaDao();
+                dao = new PessoaDaoBanco();
                 dao.criaPessoa(p);
                 out.print("Cadastrado com sucesso!");              
-            } catch (ErroBancoException | SQLException ex) {
+            } catch (ErroDAOException ex) {
                 out.print("Erro ao tentar inserir");
             } finally {
                 try {
                     dao.sair();
-                } catch (ErroBancoException ex) {
+                } catch (ErroDAOException ex) {
                     out.print("<erro> Erro ao tentar sair </erro>");
                 }
             }
@@ -82,7 +80,7 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ErroBancoException ex) {
+        } catch (ErroDAOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -100,7 +98,7 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ErroBancoException ex) {
+        } catch (ErroDAOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

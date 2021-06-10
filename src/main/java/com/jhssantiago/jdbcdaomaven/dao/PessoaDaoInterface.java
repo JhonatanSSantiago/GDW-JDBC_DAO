@@ -12,11 +12,12 @@ import java.util.List;
  * @author jhons
  */
 public interface PessoaDaoInterface {
-    public void criaPessoa(Pessoa p) throws SQLException;
-    public List<Pessoa> pegaPessoas()throws SQLException;
-    public Pessoa pegaPessoa(int codigo) throws SQLException;
-    public void deletarPessoa(int codigo) throws SQLException;
-    public void deletarPessoa(Pessoa p) throws SQLException;
-    public void editarPessoa(Pessoa p) throws SQLException;
-    public void sair() throws ErroBancoException;
+    public void criaPessoa(Pessoa p) throws ErroDAOException;
+    public List<Pessoa> pegaPessoas()throws ErroDAOException;
+    public Pessoa pegaPessoa(int codigo) throws ErroDAOException;
+    public void deletarPessoa(int codigo) throws ErroDAOException;
+    public void deletarPessoa(Pessoa p) throws ErroDAOException;
+    public void editarPessoa(Pessoa p) throws ErroDAOException;
+    public void sair() throws ErroDAOException;
+
 }
