@@ -162,7 +162,7 @@ public class PessoaDaoXml implements PessoaDaoInterface{
 
     @Override
     public void deletarPessoa(Pessoa p) throws ErroDAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        deletarPessoa(p.getCodigo());
     }
 
     @Override
